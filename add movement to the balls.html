@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mutiple ball MOVING</title>
+</head>
+<body>
+    <div id="container" style="
+            width:1000px;
+            border: 5px solid black;
+            height:600px;
+            background-color: white;
+            box-shadow: 2px 5px 100px rgb(184, 236, 28)">
+            </div>
+        
+    
+    <script>
+        var palet=["red","green","blue","yellow","pink","black","brown"]
+            var balls=[]
+            var x_pos=[]
+            var y_pos=[]
+            var x_vel=[]
+            var y_vel=[]
+            var gravity=1
+        function ballCount(n){
+            for(let i=0;i<n;i++){
+                let color=palet[Math.floor(Math.random()*7)]
+                var ball=document.createElement("div")
+                ball.style.backgroundColor=color
+                ball.style.width="50px"
+                ball.style.height="50px"
+                ball.style.borderRadius="50%"
+                ball.style.position="absolute"
+                ball.style.zIndex="5"
+                ypos=Math.floor(Math.random()*510)
+                xpos=Math.floor(Math.random()*910)
+                ball.style.left=xpos+'px'
+                ball.style.top=ypos+'px'
+                xvel=Math.random()*20 -10
+                yvel=Math.random()*20 -10
+                document.getElementById("container").appendChild(ball)
+                balls.push(ball)
+                x_pos.push(xpos)
+                y_pos.push(ypos)
+                x_vel.push(xvel)
+                y_vel.push(yvel)
+            }
+            moveBall()
+        }
+        function moveBall(){
+            for(i=0;i<balls.length;i++){
+                x_pos[i]+=x_vel[i]
+                y_pos[i]+=y_vel[i]
+                if(x_pos[i] > 800 || x_pos[i] <=5) {
+                    x_vel[i] =-x_vel[i]*gravity
+                }
+                if(y_pos[i] > 560 || y_pos[i] <= 0) {
+                    y_vel[i] =-y_vel[i]*gravity
+                }
+                balls[i].style.left=x_pos[i]+'px'
+                balls[i].style.top=y_pos[i]+'px'
+            }
+            setTimeout(moveBall,10)
+        }
+        ballCount(10)  
+    </script>
+</body>
+</html>
+<!----<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Container</title>
+    <style>
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" style=" border-style: solid; border-color: black; margin: -10px;
+    background-color: whitesmoke; height: 500px; width: 10000px;"></div>
+    <script>
+        
+        var container1 = document.getElementById("container");
+    var palet = ['blue', ' green', 'black', 'red', 'yellow'];
+        var ram =[];
+        var x_pos =[];
+        var y_pos =[];
+        var x_vel =[];
+        var y_vel =[];
+        var gravity =1;
+
+
+        function getRandom(scale) {
+            return (Math.random() * scale);
+        }
+
+ function makeball(color, xpos, ypos, xvel, yvel) {
+            var ball1 = document.createElement("div");
+
+            ball1.classList.add("ball");
+            ball1.style.background = color;
+            ball1.style.left = xpos + 'px';
+            ball1.style.top = ypos + 'px';
+            document.body.appendChild(ball1);
+ ram.push(ball1);
+            x_pos.push(xpos);
+            y_pos.push(ypos);
+            x_vel.push(xvel);
+            y_vel.push(yvel);
+        }
+
+    
+        function update() {
+        
+            for (let i = 0; i < ram.length; i++) {
+                
+                x_pos[i] += x_vel[i];
+                y_pos[i] += y_vel[i];
+
+                if ((x_pos[i] <= 0 +40)||(x_pos[i] > 950 ) ){
+                    
+                      x_vel[i] = -x_vel[i] * gravity;
+                } 
+               if ((y_pos[i] <= 0 +40) ||(y_pos[i] > 550 ) ) {
+                    
+                    y_vel[i] = -y_vel[i] * gravity;
+                
+                }
+                ram[i].style.left = x_pos[i] + 'px';
+                ram[i].style.top = y_pos[i] + 'px';
+            }
+            setTimeout(update,50);
+        }
+
+         function ballmove(n) {
+            for (let i = 1; i <= n; i++) {
+                let color = palet[Math.floor(Math.random() * 5)];
+                var xpos = getRandom(1000);
+                var ypos = getRandom(400);
+                var xvel = Math.random()*20 -10; 
+                var yvel = Math.random()*20 -10; 
+                     makeball(color, xpos, ypos, xvel, yvel);
+            }
+
+             update();
+        }
+
+        ballmove(50); 
+    </script>
+</body>
+</html>   
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>container</title>
+    
+    
+    
+</head>
+
+<body>
+    <div id="container" style="margin: auto;
+    height: 600px;
+    width: 1400px;
+    border: 5px solid;
+    color: black;
+    ">
+        <script>
+            var container1=document.getElementById("container");
+            var palet=['red','green','blue','pink','yellow']
+            var balls=[];
+            var x_pos=[];
+            var y_pos=[];
+            var x_vel=[];
+            var y_vel=[];
+            var gravity=1;
+
+            function randomball(xpos,ypos,color,xvel,yvel){
+                
+                var ball=document.createElement("div");
+                ball.style.top=xpos + 'px';
+                ball.style.left=ypos + 'px';
+                ball.style.height=20 + 'px';
+                ball.style.width=20 + 'px';
+                ball.style.background=color;
+                ball.style.borderRadius="50%";
+                ball.style.position="absolute";
+                document.body.appendChild(ball);
+                balls.push(ball);
+                x_pos.push(xpos);
+                y_pos.push(ypos);
+                x_vel.push(xvel);
+                y_vel.push(yvel);
+            }
+            function factory(n){
+                for(let i=0;i<n;i++){
+                    let color=palet[Math.floor(Math.random()*5)]
+                    var xpos=Math.random()*600;
+                    var ypos=Math.random()*500;
+                    var xvel=Math.random()*20 -10;
+                    var yvel=Math.random()*20 -10;
+                    randomball(xpos,ypos,color,xvel,yvel)
+                }
+            }
+            function moveball()
+            {
+               for(let i=0;i<balls.length;i++){
+
+                x_pos[i] = x_pos[i] + x_vel[i];
+                y_pos[i] = y_pos[i] + y_vel[i];
+
+                if((x_pos[i] <= 0)||(x_pos[i] > 1000)){
+                    x_vel[i] = -x_vel[i] * gravity;
+
+                }
+                if((y_pos[i] <= 0)||(y_pos[i] > 400)){
+                    y_vel[i] = -y_vel[i] * gravity;
+                }
+
+            
+                balls[i].style.left=x_pos[i]+ 'px';
+                balls[i].style.top=y_pos[i]+'px';
+                setTimeout(moveball,100);
+            }
+            
+        }
+        factory(100)
+        </script>
+         </body>
+</html>
+--->
